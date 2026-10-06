@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#352208">
+  <title>Muttasil · Live Occupancy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-mosque" viewBox="0 0 36 36"><path d="M18 3.2v4.2"/><circle cx="18" cy="2.4" r="1.15"/><path d="M7.2 11.2v14.6h2.5V11.2zm19.1 0v14.6h2.5V11.2z"/><path d="M8.45 11.2l.05-3.2 1.15 1.7zm19.1 0l-.05-3.2-1.15 1.7z"/><path d="M9.8 16.2c2.4-6.4 14-6.4 16.4 0"/><path d="M10.2 16.1h15.6v12.1H10.2z"/><path d="M15.2 28.2v-6.2h5.6v6.2"/><path d="M5.4 25.8h25.2v2.6H5.4z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><circle cx="17" cy="9" r="2.4"/><path d="M17 14.5c2.5 0 4.5 1.7 4.5 4.5"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M3 17l6-6 4 4 8-9"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-chip" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 21h4"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 4v16"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.2l2.8 2.8L16 9.5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#top" aria-label="Muttasil home">
+        <span class="brand-mark"><svg class="mosque" aria-hidden="true"><use href="#i-mosque"/></svg></span>
+        <span><b>MUTTASIL</b><small>MOSQUE OCCUPANCY</small></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <button class="nav-item active" data-panel="overview"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg>Home</button>
+      <button class="nav-item" data-panel="occupancy"><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg>Occupancy</button>
+      <button class="nav-item" data-panel="insights"><svg class="ico" aria-hidden="true"><use href="#i-chart"/></svg>Insights</button>
+      <button class="nav-item" data-panel="activity"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>Activity</button>
+      <button class="nav-item" data-panel="connection"><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>Sensor</button>
+      <div class="sidebar-bottom">
+        <div class="side-card"><span class="side-icon"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg></span><div><b>Local system</b><small>Data stays on this network</small></div><i></i></div>
+        <div class="profile"><div class="avatar">ZN</div><div><b>Zahi Najmal</b><small>System administrator</small></div></div>
+      </div>
+    </aside>
+
+    <main id="top" class="main-area">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark"><svg class="mosque" aria-hidden="true"><use href="#i-mosque"/></svg></span><b>MUTTASIL</b></div>
+        <div class="breadcrumb">Workspace <span>/</span> <b id="crumbLabel">Home</b></div>
+        <div class="top-actions">
+          <span class="local-pill"><i></i> LOCAL NETWORK</span>
+          <span class="date" id="dateLabel"></span>
+          <button class="icon-btn" aria-label="Notifications"><svg class="ico" aria-hidden="true"><use href="#i-bell"/></svg><em></em></button>
+        </div>
+      </header>
+
+      <div class="content" id="overview">
+        <section class="heading-row">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> MOSQUE OPERATIONS</div>
+            <h1>Occupancy overview</h1>
+            <p class="subheading">A clear view of your space, updated as people arrive.</p>
+          </div>
+          <button class="refresh-btn" id="refreshBtn"><svg class="ico" aria-hidden="true"><use href="#i-refresh"/></svg> Refresh data</button>
+        </section>
+
+        <section class="hero-grid">
+          <article class="occupancy-card detail-trigger" data-panel="occupancy" tabindex="0" aria-label="Open occupancy details">
+            <div class="card-top">
+              <div><span class="card-kicker">CURRENT OCCUPANCY</span><div class="live-state"><i></i><span id="statusText">Awaiting sensor data</span></div></div>
+              <span class="hero-icon"><svg class="mosque" aria-hidden="true"><use href="#i-mosque"/></svg></span>
+            </div>
+            <div class="count-line"><strong id="count">0</strong><span>people<br>inside</span></div>
+            <div class="capacity-label"><span><b id="percent">0%</b> of capacity</span><span><b id="capacityText">100</b> max</span></div>
+            <div class="progress-track"><div id="progressFill"></div></div>
+            <div class="occupancy-foot"><span id="occupancyBand"><i class="small-check">✓</i> Comfortable</span><span id="available">100 spaces remaining</span></div>
+            <div class="card-cta"><span>View occupancy detail</span><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></div>
+            <div class="card-glow"></div>
+          </article>
+
+          <article class="connection-card detail-trigger" id="connection" data-panel="connection" tabindex="0" aria-label="Open sensor details">
+            <div class="section-title">
+              <div><span class="card-kicker">SENSOR CONNECTION</span><h2>Arduino link</h2></div>
+              <span class="connection-symbol"><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg></span>
+            </div>
+            <div class="connection-status"><span class="status-orb" id="connectionOrb"></span><div><b id="connectionTitle">Not connected</b><small id="connectionDesc">Connect your Arduino to begin</small></div></div>
+            <div class="connection-rule"></div>
+            <label for="portSelect">SERIAL PORT</label>
+            <div class="select-row"><select id="portSelect"><option value="">Select a port…</option></select><button class="scan-btn" id="scanBtn" aria-label="Refresh ports"><svg class="ico" aria-hidden="true"><use href="#i-refresh"/></svg></button></div>
+            <button class="connect-btn" id="connectBtn">Connect Arduino →</button>
+            <button class="demo-link" id="demoBtn">Preview with demo data ↗</button>
+          </article>
+        </section>
+
+        <section class="metrics-grid">
+          <article class="metric-card">
+            <div class="metric-head"><span class="metric-icon olive"><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg></span><span class="metric-tag">LIVE</span></div>
+            <span class="metric-label">Inside now</span>
+            <div class="metric-number"><b id="insideMetric">0</b><span>people</span></div>
+            <div class="metric-caption"><span class="metric-bullet"></span> Current headcount</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-head"><span class="metric-icon gold"><svg class="ico" aria-hidden="true"><use href="#i-grid"/></svg></span><span class="metric-tag quiet">LIMIT</span></div>
+            <span class="metric-label">Total capacity</span>
+            <div class="metric-number"><b id="capacityMetric">100</b><span>people</span></div>
+            <div class="metric-caption"><button class="text-action" id="editCapacity">Adjust capacity →</button></div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-head"><span class="metric-icon blue"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span class="metric-tag quiet">REMAINING</span></div>
+            <span class="metric-label">Available spaces</span>
+            <div class="metric-number"><b id="availableMetric">100</b><span>spaces</span></div>
+            <div class="metric-caption"><span class="capacity-track"><i id="miniFill"></i></span><span id="miniPercent">100% free</span></div>
+          </article>
+        </section>
+
+        <section class="insights-grid" id="insights">
+          <article class="chart-card detail-trigger" data-panel="insights" tabindex="0" aria-label="Open occupancy trend">
+            <div class="panel-heading">
+              <div><span class="card-kicker">OCCUPANCY PATTERN</span><h2>Live occupancy trend</h2></div>
+              <div class="range-control" aria-label="Occupancy graph range"><button class="range active" data-range="live">Live</button><button class="range" data-range="15m">15 min</button><button class="range" data-range="1h">1 hour</button></div>
+            </div>
+            <div class="chart-summary">
+              <div><b id="chartCurrent">0</b><span>people now</span></div>
+              <div><b id="chartPeak">0</b><span>peak today</span></div>
+              <div><b id="chartAverage">0</b><span>average</span></div>
+            </div>
+            <div class="chart-wrap">
+              <svg id="occupancyChart" viewBox="0 0 600 190" preserveAspectRatio="none" aria-label="Interactive occupancy trend chart" role="img">
+                <defs><linearGradient id="areaFill" x1="0" x2="0" y1="0" y2="1"><stop id="areaStart" offset="0%" stop-color="#557635" stop-opacity=".28"/><stop id="areaEnd" offset="100%" stop-color="#557635" stop-opacity="0"/></linearGradient></defs>
+                <g class="grid-lines"><line x1="0" y1="25" x2="600" y2="25"/><line x1="0" y1="82" x2="600" y2="82"/><line x1="0" y1="139" x2="600" y2="139"/></g>
+                <path id="chartArea" fill="url(#areaFill)" d=""/>
+                <path id="chartLine" class="trend-line" fill="none" stroke="#557635" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d=""/>
+                <line id="chartGuide" class="chart-guide" x1="0" y1="18" x2="0" y2="172" style="display:none"/>
+                <line id="chartFocus" class="dot focus" x1="0" y1="0" x2="0.01" y2="0" style="display:none"/>
+                <g id="chartPoints"></g>
+              </svg>
+              <div class="chart-tooltip" id="chartTooltip" hidden></div>
+            </div>
+            <div class="chart-axis"><span id="axisStart">Earlier</span><span>Now</span></div>
+          </article>
+
+          <aside class="space-card detail-trigger" data-panel="occupancy" tabindex="0" aria-label="Open space status">
+            <span class="card-kicker">SPACE STATUS</span>
+            <h2 id="spaceTitle">Ready for arrivals</h2>
+            <p id="spaceText">Connect your sensor to start monitoring occupancy in real time.</p>
+            <div class="space-meter"><span><b id="spacePercent">100%</b> available</span><i><em id="spaceBar"></em></i></div>
+            <div class="status-list">
+              <div><span class="list-symbol olive-dot"></span><span>Data feed</span><b id="feedValue">Waiting</b></div>
+              <div><span class="list-symbol gold-dot"></span><span>Current status</span><b id="capacityStatus">Available</b></div>
+              <div><span class="list-symbol blue-dot"></span><span>Last reading</span><b id="lastReading">—</b></div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="lower-grid" id="activity">
+          <article class="activity-card detail-trigger" data-panel="activity" tabindex="0" aria-label="Open live activity">
+            <div class="panel-heading"><div><span class="card-kicker">SYSTEM ACTIVITY</span><h2>Live activity</h2></div><span class="today-pill"><i></i> TODAY</span></div>
+            <div class="activity-empty" id="activityEmpty"><span class="empty-icon"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg></span><div><b>Ready when you are</b><p>Sensor updates will appear here as your occupancy count changes.</p></div></div>
+            <div class="activity-list" id="activityList"></div>
+          </article>
+
+          <article class="insight-card detail-trigger" data-panel="occupancy" tabindex="0" aria-label="Open occupancy details">
+            <div class="insight-art"><span class="sun"></span><span class="arc arc-one"></span><span class="arc arc-two"></span><span class="dome"></span><span class="minaret left"></span><span class="minaret right"></span><span class="horizon"></span></div>
+            <div class="insight-copy">
+              <span class="card-kicker">MADE FOR YOUR COMMUNITY</span>
+              <h2>A calmer way to manage busy spaces.</h2>
+              <p>Real-time awareness helps your community find the room it needs.</p>
+              <span class="local-note"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg> Private by design · runs locally</span>
+            </div>
+          </article>
+        </section>
+
+        <footer><span>MADE BY ZAHI NAJMAL</span><span class="footer-right">MUTTASIL <i>·</i> LIVE SPACE DASHBOARD</span></footer>
+      </div>
+
+      <nav class="mobile-nav" aria-label="Workspace">
+        <button class="nav-item active" data-panel="overview"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg>Home</button>
+        <button class="nav-item" data-panel="occupancy"><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg>Occupancy</button>
+        <button class="nav-item" data-panel="insights"><svg class="ico" aria-hidden="true"><use href="#i-chart"/></svg>Insights</button>
+        <button class="nav-item" data-panel="activity"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>Activity</button>
+        <button class="nav-item" data-panel="connection"><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>Sensor</button>
+      </nav>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <!-- Zoom detail view -->
+  <section class="detail-view" id="detailView" aria-hidden="true">
+    <div class="detail-backdrop" data-close-detail></div>
+    <article class="detail-panel" id="detailPanel" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <div class="detail-scroll">
+        <div class="detail-card-shell" id="detailShell">
+          <button class="detail-back" data-close-detail><svg class="ico" aria-hidden="true"><use href="#i-back"/></svg> Back to overview</button>
+          <div class="detail-eyebrow" id="detailEyebrow">MUTTASIL</div>
+          <h2 id="detailTitle">Occupancy</h2>
+          <p class="detail-intro" id="detailIntro"></p>
+          <div id="detailContent"></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <dialog id="capacityDialog" class="dialog">
+    <form method="dialog">
+      <button class="dialog-close" aria-label="Close">×</button>
+      <span class="card-kicker">SPACE SETTINGS</span>
+      <h2>Set mosque capacity</h2>
+      <p>Choose the maximum number of people your space can hold.</p>
+      <label for="capacityInput">MAX CAPACITY</label>
+      <input id="capacityInput" type="number" min="1" max="10000" value="100">
+      <div class="dialog-actions"><button class="cancel-btn" value="cancel">Cancel</button><button class="save-btn" id="saveCapacity" value="default">Save capacity</button></div>
+    </form>
+  </dialog>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+  <script src="/forecast.js"></script>
+</body>
+</html>

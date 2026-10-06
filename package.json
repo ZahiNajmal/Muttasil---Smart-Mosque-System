@@ -1,0 +1,14 @@
+{
+  "name": "muttasil-live-dashboard",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Local Arduino occupancy dashboard for Muttasil",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": {
+    "express": "^4.21.2",
+    "@serialport/parser-readline": "^12.0.0",
+    "serialport": "^12.0.0",
+    "socket.io": "^4.8.1"
+  }
+}
