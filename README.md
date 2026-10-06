@@ -11,30 +11,58 @@ A local, phone-ready occupancy dashboard for the Arduino serial counter. The Nod
 5. On your phone, while connected to the same Wi-Fi, open the `http://...` phone address printed by the server.
 6. Choose the Arduino's COM port and select **Connect Arduino**.
 
-The serial monitor must be closed while the dashboard owns the Arduino port. The Arduino should emit one line per reading, for example `Count: 12`, at 9600 baud. The server can listen on a different baud rate with `BAUD_RATE=...` if the sketch is changed.
+The serial monitor must be closed while the dashboard owns the Arduino port. The Arduino should emit one line per reading, for example `Count: 12`, at 9600 baud.
 
 Use **Preview with demo data** to inspect the dashboard without an Arduino. Demo counts are clearly identified and are not sensor readings. Use **Adjust capacity** to change the occupancy limit.
 
-If the Arduino USB cable is unplugged, the dashboard immediately clears the count to `0` and marks the data feed offline. That prevents an old reading from appearing as a live occupancy count.
+If the Arduino USB cable is unplugged, the dashboard immediately clears the count to `0` and marks the data feed offline. This prevents an old reading from appearing as a live occupancy count.
 
-## Phone connection tips
+## TFT Display Code and Wiring
 
-- Phone and computer need to be on the same Wi-Fi network.
-- Use the network address printed by `npm start`, not `localhost`, on the phone.
-- If the page will not load, allow Node.js through Windows Firewall on your private network.
+The TFT code used in the Muttasil physical prototype is available in the mBlock project below:
 
-## About wireless sensing
+**mBlock TFT Code:**
+https://planet.mblock.cc/project/projectedit/8544133
 
-The current fabric/touch-wire input cannot detect someone at a distance: it needs a physical electrical connection and contact/coupling to change the input. Wireless reporting can be added between a sensor and the server, but the sensing method itself must still detect people. Practical prototype options include a doorway pair of break-beam IR sensors for directional entry/exit counting, a pressure mat/load sensor at a controlled entrance, or a privacy-conscious overhead depth sensor. A single PIR sensor detects motion/presence but does not reliably count entries and exits. Camera-based counting can work, but needs careful placement, lighting and privacy safeguards.
+The project contains the code for the TFT display, the Muttasil interface, and the touch-based occupancy counter.
 
-## Running without the Arduino USB cable
+### Wiring
 
-The blue USB cable currently supplies **both power and the data connection** between the Uno and the laptop. To remove it, power the Arduino from a suitable USB power bank or regulated 5 V supply, then give it a wireless data link:
+The prototype uses an **Arduino Uno**, a **2.4-inch TFT display**, and an **e-textile/wire sensing system**.
 
-- **Best option for a new build:** replace the Uno with an ESP32. It can read the fabric/touch sensor and send readings over Wi-Fi to the dashboard.
-- **Keep the Uno:** add an ESP8266 Wi-Fi module or a Bluetooth module. Wi-Fi is the better fit for this dashboard because it can send the count to the laptop over the same local network.
+The sensing system works using a wire connected to the sensing material. When a person touches the sensing material, the Arduino detects the change and updates the occupancy count.
 
-The laptop must still be powered and connected to the same Wi-Fi if it is hosting the dashboard. An ESP8266 requires correct 3.3 V power and logic-level wiring; do not connect Uno 5 V signals directly to it.
+* **Touch/e-textile signal wire → A5**
+* The sensing material is connected to the touch input.
+* The TFT is connected directly to the Arduino as the shield.
+* **No 3V3 connection is used.**
+* No extra disconnected wire is required.
+
+The wiring shown here represents the actual technique used in the current Muttasil prototype.
+
+## AI-Powered Traffic Prediction
+
+Muttasil can also use the collected occupancy data to identify patterns in mosque traffic.
+
+By analyzing previous occupancy readings and prayer-time patterns, the system can predict when a mosque is likely to become more crowded. This can help worshippers choose a less crowded mosque and can help with better planning.
+
+For example, if historical data shows that a mosque usually becomes highly occupied around a particular prayer time, Muttasil can predict the expected traffic level before that period begins.
+
+This makes Muttasil more than a simple people counter. It combines **live occupancy data, prayer information, navigation, and AI-based traffic prediction** to help make finding a suitable mosque easier.
+
+## About the Wire-Based Sensing
+
+The current prototype uses a simple physical wire/e-textile sensing technique. The sensing material is placed where a person can touch it, and the Arduino detects the electrical change caused by the interaction.
+
+When the system detects a valid touch, the occupancy count is updated and displayed on the TFT. The count can also be sent to the local dashboard so the live occupancy can be viewed from a phone.
+
+This is the sensing method used by the current prototype and does not require a camera.
+
+## Phone Connection Tips
+
+* Phone and computer need to be on the same Wi-Fi network.
+* Use the network address printed by `npm start`, not `localhost`, on the phone.
+* If the page will not load, allow Node.js through Windows Firewall on your private network.
 
 ## Palette
 
